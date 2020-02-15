@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5047d8ff777d4ea7a66d0b48af1ed07, type: 3}
+  m_Name: Investigate
+  m_EditorClassIdentifier: 
+  storyText: 'You investigate the prints...
+
+
+    The prints appear to be from countless goblins, one or two giants, and possibly
+    a bear.'
+  nextStates:
+  - {fileID: 11400000, guid: f1d567c02b9b141c08ae4f3ac9414b2a, type: 2}
+  image: {fileID: 21300000, guid: f7b078d3a3f5d4063ae47d657a52d2ff, type: 3}
+  choice1BtnText: 
+  choice2BtnText: 
+  continueBtnText: Continue
