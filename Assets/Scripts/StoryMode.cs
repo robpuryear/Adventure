@@ -2,42 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.IO;
+using System;
 
 public class StoryMode : MonoBehaviour
 {
-    // SerializeField makes the variable available in the inspector
-    [SerializeField] Text textComponent;
-    [SerializeField] State startingState;
-    [SerializeField] Image storyImage;
-    [SerializeField] Text choice1BtnText;
-    [SerializeField] Text choice2BtnText;
-    [SerializeField] Text continueBtnText;
+    public Text textComponent;
+    public Image storyImage;
+    public Text choice1BtnText;
+    public Text choice2BtnText;
+    public Text choice3BtnText;
+
+    public DataManager dataManager;
 
     GameObject choice1Btn;
     GameObject choice2Btn;
-    GameObject continueBtn;
+    GameObject choice3Btn;
 
-    State state;
-    State[] nextStates;
-
-    // Start is called before the first frame update
     void Start()
     {
-        state = startingState;
-        textComponent.text = state.GetStateStory();
-        storyImage.sprite = state.GetStoryImage();
+        dataManager.LoadStartupJSON();
 
-        choice1BtnText.text = state.GetButton1Text();
-        choice2BtnText.text = state.GetButton2Text();
-
-        // hide choice1 button
+        // get a reference to the buttons
         choice1Btn = GameObject.Find("Choice1 Btn");
         choice2Btn = GameObject.Find("Choice2 Btn");
-        continueBtn = GameObject.Find("Continue Btn");
+        choice3Btn = GameObject.Find("Choice3 Btn");
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         ManageState();
@@ -45,18 +37,14 @@ public class StoryMode : MonoBehaviour
 
     private void ManageState()
     {
-        // get the array of possible states for the current state
-        nextStates = state.GetNextStates();
-
-        // update the screen with the state data
-        textComponent.text = state.GetStateStory();
-        storyImage.sprite = state.GetStoryImage();
-        choice1BtnText.text = state.GetButton1Text();
-        choice2BtnText.text = state.GetButton2Text();
-        continueBtnText.text = state.GetContinueBtnText();
+        textComponent.text = dataManager.json["storyText"].Value;
+        choice1BtnText.text = dataManager.json["btn1Text"].Value;
+        choice2BtnText.text = dataManager.json["btn2Text"].Value;
+        choice3BtnText.text = dataManager.json["btn3Text"].Value;
+        storyImage.sprite = dataManager.LoadStorySprite();
 
         // if there is no text for a button in a state, hide the button
-        if(choice1BtnText.text == "")
+        if (choice1BtnText.text == "")
         {
             hideBtn1();
         }
@@ -74,30 +62,30 @@ public class StoryMode : MonoBehaviour
             showBtn2();
         }
 
-        if (continueBtnText.text == "")
+        if (choice3BtnText.text == "")
         {
-            hideContinueBtn();
+            hideBtn3();
         }
         else
         {
-            showContinueBtn();
+            showBtn3();
         }
 
     }
 
     public void Btn1Pressed()
     {
-        state = nextStates[0];
+        dataManager.LoadNextState(dataManager.json["states"][0]["btn1"]);
     }
 
     public void Btn2Pressed()
     {
-        state = nextStates[1];
+        dataManager.LoadNextState(dataManager.json["states"][0]["btn2"]);
     }
 
-    public void ContinueBtnPressed()
+    public void Btn3BtnPressed()
     {
-        state = nextStates[0];
+        dataManager.LoadNextState(dataManager.json["states"][0]["btn3"]);
     }
 
     public void hideBtn1()
@@ -110,9 +98,9 @@ public class StoryMode : MonoBehaviour
         choice2Btn.SetActive(false);
     }
 
-    public void hideContinueBtn()
+    public void hideBtn3()
     {
-        continueBtn.SetActive(false);
+        choice3Btn.SetActive(false);
     }
 
     public void showBtn1()
@@ -125,9 +113,9 @@ public class StoryMode : MonoBehaviour
         choice2Btn.SetActive(true);
     }
 
-    public void showContinueBtn()
+    public void showBtn3()
     {
-        continueBtn.SetActive(true);
+        choice3Btn.SetActive(true);
     }
 
 

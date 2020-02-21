@@ -1,0 +1,14 @@
+{
+    "storyText": "Perception Failure - Several goblins leap from behind the debris piles, surprising the party!",
+    "storyImage": "Art/goblins",
+    "btn1Text": "Fight",
+    "btn2Text": "",
+    "btn3Text": "Runaway",
+    "states": [
+        {
+            "btn1": "",
+            "btn2": "",
+            "btn3": ""
+        }
+    ]
+}

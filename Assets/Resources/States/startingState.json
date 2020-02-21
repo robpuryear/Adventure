@@ -1,0 +1,14 @@
+{
+    "storyText": "The Adventure Begins - The clues have led you directly to a cave in the foothills of the Greypeak Mountains. Outside the opening are a variety of tracks and prints.",
+    "storyImage": "Art/cave 1",
+    "btn1Text": "Investigate",
+    "btn2Text": "",
+    "btn3Text": "Ignore",
+    "states": [
+        {
+            "btn1": "investigateCave",
+            "btn2": "",
+            "btn3": "Ignore"
+        }
+    ]
+}

@@ -2,56 +2,76 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
+using SimpleJSON;
 
 public class DataManager : MonoBehaviour
 {
-    public PlayerData data;
-    private string file = "player1.txt";
+    public JSONState state;
+    public JSONNode json;
 
-    public void Save()
+    public Sprite LoadStorySprite()
     {
-        string json = JsonUtility.ToJson(data);
-        WriteToFile(file, json);
+        var sprite = Resources.Load<Sprite>(json["storyImage"].Value);
+        return sprite;
     }
 
-    public void Load()
+    public void LoadStartupJSON()
     {
-        data = new PlayerData();
-        string json = ReadFromFile(file);
-        JsonUtility.FromJsonOverwrite(json, data);
+        //Load text from a JSON file (Assets/Resources/startingState.json)
+        var jsonTextFile = Resources.Load<TextAsset>("States/startingState");
+        json = JSON.Parse(jsonTextFile.ToString());
     }
 
-    private void WriteToFile(string fileName, string json)
+    public void LoadNextState(string file)
     {
-        string path = GetFilePath(fileName);
-        FileStream fileStream = new FileStream(path, FileMode.Create);
-
-        using (StreamWriter writer = new StreamWriter(fileStream))
-        {
-            writer.Write(json);
-        }
+        var jsonTextFile = Resources.Load<TextAsset>("States/" + file);
+        json = JSON.Parse(jsonTextFile.ToString());
     }
 
-    private string ReadFromFile(string fileName)
-    {
-        string path = GetFilePath(fileName);
-        if (File.Exists(path))
-        {
-            using (StreamReader reader = new StreamReader(path))
-            {
-                string json = reader.ReadToEnd();
-                return json;
-            }
-        }
-        else
-            Debug.LogWarning("File not found!");
+    //public void Save()
+    //{
+    //    string json = JsonUtility.ToJson(state);
+    //    WriteToFile(file, json);
+    //}
 
-        return "";
-    }
+    //public void Load()
+    //{
+    //    state = new JSONState();
+    //    string json = ReadFromFile(file);
+    //    JsonUtility.FromJsonOverwrite(json, state);
+    //}
 
-    private string GetFilePath(string fileName)
-    {
-        return Application.persistentDataPath + "/" + fileName;
-    }
+    //private void WriteToFile(string fileName, string json)
+    //{
+    //    string path = GetFilePath(fileName);
+    //    FileStream fileStream = new FileStream(path, FileMode.Create);
+
+    //    using (StreamWriter writer = new StreamWriter(fileStream))
+    //    {
+    //        writer.Write(json);
+    //    }
+    //}
+
+    //private string ReadFromFile(string fileName)
+    //{
+    //    string path = GetFilePath(fileName);
+    //    if (File.Exists(path))
+    //    {
+    //        using (StreamReader reader = new StreamReader(path))
+    //        {
+    //            string json = reader.ReadToEnd();
+    //            return json;
+    //        }
+    //    }
+    //    else
+    //        Debug.LogWarning("File not found!");
+
+    //    return "";
+    //}
+
+    //private string GetFilePath(string fileName)
+    //{
+    //    return Application.persistentDataPath + "/" + fileName;
+    //}
 
 }

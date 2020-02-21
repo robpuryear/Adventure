@@ -1,0 +1,14 @@
+{
+    "storyText": "The prints appear to be from countless goblins, one or two giants, and possibly a bear.",
+    "storyImage": "Art/investigating1",
+    "btn1Text": "",
+    "btn2Text": "Continue",
+    "btn3Text": "",
+    "states": [
+        {
+            "btn1": "",
+            "btn2": "cave",
+            "btn3": ""
+        }
+    ]
+}

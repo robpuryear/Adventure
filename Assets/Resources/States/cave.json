@@ -1,0 +1,14 @@
+{
+    "storyText": "The adventurers traverse the tunnel past the cave opening, until it opens into a large cavern. The large cavern is empty of living creatures, although several lanterns around the room provide light. Rubble is piled up three feet high in several places throughout the cavern, and two tunnels lead out. The tunnel on the south wall is clear, but the tunnel to the east is chocked with debris. Dust still rides the zephyrs circulating through the cavern, leading you to believe the cave-in to the east was recent.",
+    "storyImage": "Art/cave2",
+    "btn1Text": "",
+    "btn2Text": "Continue",
+    "btn3Text": "",
+    "states": [
+        {
+            "btn1": "",
+            "btn2": "goblins",
+            "btn3": ""
+        }
+    ]
+}
