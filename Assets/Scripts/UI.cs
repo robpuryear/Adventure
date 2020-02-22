@@ -8,8 +8,140 @@ public class UI : MonoBehaviour
 
     public InputField playerName;
     public Text strong;
-
     public DataManager dataManager;
+
+    public Image hair;
+    public Image facialHair;
+    public Image shirt;
+    public Image pants;
+    public Image shoes;
+
+    int hairCounter = -1;
+    int facialHairCounter = -1;
+    int shirtCounter = -1;
+    int pantsCounter = -1;
+    int shoesCounter = -1;
+
+    public Sprite[] nextHair;
+    public Sprite[] nextFacialHair;
+    public Sprite[] nextShirt;
+    public Sprite[] nextPants;
+    public Sprite[] nextShoes;
+
+
+    void Start()
+    {
+        dataManager.Load();
+        playerName.text = dataManager.data.name;
+        strong.text = dataManager.data.strong.ToString();
+    }
+
+    public void AddHair()
+    {
+        var nextHairs = getNextHair();
+
+        if(hairCounter < nextHairs.Length - 1)
+        {
+            hairCounter += 1;
+            hair.sprite = nextHairs[hairCounter];
+        }
+        else
+        {
+            hairCounter = 0;
+            hair.sprite = nextHairs[hairCounter];
+        }
+    }
+
+    public Sprite[] getNextHair()
+    {
+        return nextHair;
+    }
+
+    public void AddFacialHair()
+    {
+        var nextFacialHairs = getNextFacialHair();
+
+        if (facialHairCounter < nextFacialHairs.Length - 1)
+        {
+            facialHairCounter += 1;
+            facialHair.sprite = nextFacialHairs[facialHairCounter];
+        }
+        else
+        {
+            facialHairCounter = 0;
+            facialHair.sprite = nextFacialHairs[facialHairCounter];
+        }
+    }
+
+    public Sprite[] getNextFacialHair()
+    {
+        return nextFacialHair;
+    }
+
+    public void AddShirt()
+    {
+        var nextShirt = getNextShirt();
+
+        if (shirtCounter < nextShirt.Length - 1)
+        {
+            shirtCounter += 1;
+            shirt.sprite = nextShirt[shirtCounter];
+        }
+        else
+        {
+            shirtCounter = 0;
+            shirt.sprite = nextShirt[shirtCounter];
+        }
+    }
+
+    public Sprite[] getNextShirt()
+    {
+        return nextShirt;
+    }
+
+
+    public void AddPants()
+    {
+        var nextPants = getNextPants();
+
+        if (pantsCounter < nextPants.Length - 1)
+        {
+            pantsCounter += 1;
+            pants.sprite = nextPants[pantsCounter];
+        }
+        else
+        {
+            pantsCounter = 0;
+            pants.sprite = nextPants[pantsCounter];
+        }
+    }
+
+    public Sprite[] getNextPants()
+    {
+        return nextPants;
+    }
+
+    public void AddShoes()
+    {
+        var nextShoes = getNextShoes();
+
+        if (shoesCounter < nextShoes.Length - 1)
+        {
+            shoesCounter += 1;
+            shoes.sprite = nextShoes[shoesCounter];
+        }
+        else
+        {
+            shoesCounter = 0;
+            shoes.sprite = nextShoes[shoesCounter];
+        }
+    }
+
+    public Sprite[] getNextShoes()
+    {
+        return nextShoes;
+    }
+
 
     public void IncreaseStrong()
     {
@@ -33,12 +165,6 @@ public class UI : MonoBehaviour
         dataManager.Save();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        dataManager.Load();
-        playerName.text = dataManager.data.name;
-        strong.text = dataManager.data.strong.ToString();
-    }
+    
 
 }
