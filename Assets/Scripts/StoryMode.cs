@@ -13,7 +13,7 @@ public class StoryMode : MonoBehaviour
     public Text choice2BtnText;
     public Text choice3BtnText;
 
-    public DataManager dataManager;
+    public StoryDataManager dataManager;
 
     GameObject choice1Btn;
     GameObject choice2Btn;

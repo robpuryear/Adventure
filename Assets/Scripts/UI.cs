@@ -8,7 +8,13 @@ public class UI : MonoBehaviour
 
     public InputField playerName;
     public Text strong;
-    public DataManager dataManager;
+    public Text quick;
+    public Text smart;
+    public Text devoted;
+    public Text tough;
+    public Text charm;
+
+    public CharacterDataManager dataManager;
 
     public Image hair;
     public Image facialHair;
@@ -28,12 +34,41 @@ public class UI : MonoBehaviour
     public Sprite[] nextPants;
     public Sprite[] nextShoes;
 
+    public string hairName;
 
     void Start()
     {
         dataManager.Load();
+
+        LoadSavedCharacter();
+        
+    }
+
+    public void LoadSavedCharacter()
+    {
         playerName.text = dataManager.data.name;
         strong.text = dataManager.data.strong.ToString();
+
+        if (dataManager.data.hair.Length > 0)
+        {
+            hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
+        }
+        if (dataManager.data.facialHair.Length > 0)
+        {
+            facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
+        }
+        if (dataManager.data.shoes.Length > 0)
+        {
+            shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
+        }
+        if (dataManager.data.pants.Length > 0)
+        {
+            pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
+        }
+        if (dataManager.data.shirt.Length > 0)
+        {
+            shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
+        }
     }
 
     public void AddHair()
@@ -162,6 +197,11 @@ public class UI : MonoBehaviour
 
     public void ClickSave()
     {
+        dataManager.data.hair = hair.sprite.name;
+        dataManager.data.facialHair = facialHair.sprite.name;
+        dataManager.data.shirt = shirt.sprite.name;
+        dataManager.data.shoes = shoes.sprite.name;
+        dataManager.data.pants = pants.sprite.name;
         dataManager.Save();
     }
 

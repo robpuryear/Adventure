@@ -713,7 +713,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 330530223}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e6d76a6618bb42b287d447ef799de13, type: 3}
+  m_Script: {fileID: 11500000, guid: bc785b3859e274538a96bda152aae174, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &330530225
@@ -3545,7 +3545,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerName: {fileID: 1518119830}
   strong: {fileID: 343708347}
-  dataManager: {fileID: 330530224}
+  dataManager: {fileID: 0}
   hair: {fileID: 1976991181}
   facialHair: {fileID: 840670558}
   shirt: {fileID: 599510142}

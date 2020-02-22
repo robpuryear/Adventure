@@ -4,32 +4,10 @@ using System.IO;
 using UnityEngine;
 using SimpleJSON;
 
-public class DataManager : MonoBehaviour
+public class CharacterDataManager : MonoBehaviour
 {
     private string file = "player1.txt";
     public PlayerData data;
-
-    public JSONState state;
-    public JSONNode json;
-
-    public Sprite LoadStorySprite()
-    {
-        var sprite = Resources.Load<Sprite>(json["storyImage"].Value);
-        return sprite;
-    }
-
-    public void LoadStartupJSON()
-    {
-        //Load text from a JSON file (Assets/Resources/startingState.json)
-        var jsonTextFile = Resources.Load<TextAsset>("States/startingState");
-        json = JSON.Parse(jsonTextFile.ToString());
-    }
-
-    public void LoadNextState(string file)
-    {
-        var jsonTextFile = Resources.Load<TextAsset>("States/" + file);
-        json = JSON.Parse(jsonTextFile.ToString());
-    }
 
     public void Save()
     {
