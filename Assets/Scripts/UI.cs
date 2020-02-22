@@ -47,6 +47,11 @@ public class UI : MonoBehaviour
     public void LoadSavedCharacter()
     {
         playerName.text = dataManager.data.name;
+        quick.text = dataManager.data.quick.ToString();
+        tough.text = dataManager.data.tough.ToString();
+        devoted.text = dataManager.data.devoted.ToString();
+        smart.text = dataManager.data.smart.ToString();
+        charm.text = dataManager.data.charm.ToString();
         strong.text = dataManager.data.strong.ToString();
 
         if (dataManager.data.hair.Length > 0)
@@ -188,6 +193,66 @@ public class UI : MonoBehaviour
     {
         dataManager.data.strong -= 1;
         strong.text = dataManager.data.strong.ToString();
+    }
+
+    public void IncreaseQuick()
+    {
+        dataManager.data.quick += 1;
+        quick.text = dataManager.data.quick.ToString();
+    }
+
+    public void DecreaseQuick()
+    {
+        dataManager.data.quick -= 1;
+        quick.text = dataManager.data.quick.ToString();
+    }
+
+    public void IncreaseSmart()
+    {
+        dataManager.data.smart += 1;
+        smart.text = dataManager.data.smart.ToString();
+    }
+
+    public void DecreaseSmart()
+    {
+        dataManager.data.smart -= 1;
+        smart.text = dataManager.data.smart.ToString();
+    }
+
+    public void IncreaseDevoted()
+    {
+        dataManager.data.devoted += 1;
+        devoted.text = dataManager.data.devoted.ToString();
+    }
+
+    public void DecreaseDevoted()
+    {
+        dataManager.data.devoted -= 1;
+        devoted.text = dataManager.data.devoted.ToString();
+    }
+
+    public void IncreaseTough()
+    {
+        dataManager.data.tough += 1;
+        tough.text = dataManager.data.tough.ToString();
+    }
+
+    public void DecreaseTough()
+    {
+        dataManager.data.tough -= 1;
+        tough.text = dataManager.data.tough.ToString();
+    }
+
+    public void IncreaseCharm()
+    {
+        dataManager.data.charm += 1;
+        charm.text = dataManager.data.charm.ToString();
+    }
+
+    public void DecreaseCharm()
+    {
+        dataManager.data.charm -= 1;
+        charm.text = dataManager.data.charm.ToString();
     }
 
     public void ChangeName(string text)
