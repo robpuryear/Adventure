@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UI : MonoBehaviour
@@ -34,14 +36,46 @@ public class UI : MonoBehaviour
     public Sprite[] nextPants;
     public Sprite[] nextShoes;
 
-    public string hairName;
+    public string playerBtn;
+    public string jsonFile;
 
     void Start()
     {
-        dataManager.Load();
+        playerBtn = ThisBtnPressed();
+       
+        GetCharacter();
+    }
 
-        LoadSavedCharacter();
-        
+    public void GetCharacter()
+    {
+        if (playerBtn.Equals("Character1 Edit Btn"))
+        {
+            jsonFile = "player1.txt";
+            dataManager.Load(jsonFile);
+
+            LoadSavedCharacter();
+        }
+        else if (playerBtn.Equals("Character2 Edit Btn"))
+        {
+            jsonFile = "player2.txt";
+            dataManager.Load(jsonFile);
+
+            LoadSavedCharacter();
+        }
+        else if (playerBtn.Equals("Character3 Edit Btn"))
+        {
+            jsonFile = "player3.txt";
+            dataManager.Load(jsonFile);
+
+            LoadSavedCharacter();
+        }
+        else if (playerBtn.Equals("Character4 Edit Btn"))
+        {
+            jsonFile = "player4.txt";
+            dataManager.Load(jsonFile);
+
+            LoadSavedCharacter();
+        }
     }
 
     public void LoadSavedCharacter()
@@ -53,7 +87,7 @@ public class UI : MonoBehaviour
         smart.text = dataManager.data.smart.ToString();
         charm.text = dataManager.data.charm.ToString();
         strong.text = dataManager.data.strong.ToString();
-
+         
         if (dataManager.data.hair.Length > 0)
         {
             hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
@@ -267,9 +301,14 @@ public class UI : MonoBehaviour
         dataManager.data.shirt = shirt.sprite.name;
         dataManager.data.shoes = shoes.sprite.name;
         dataManager.data.pants = pants.sprite.name;
-        dataManager.Save();
+        dataManager.Save(jsonFile);
+
+        SceneManager.LoadScene("PartyScene");
     }
 
-    
+    public string ThisBtnPressed()
+    {
+        return PlayerPrefs.GetString("player");
+    }
 
 }

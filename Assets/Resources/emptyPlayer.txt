@@ -1,0 +1,15 @@
+{
+    "name": "Player",
+    "strong": 85,
+    "quick": 84,
+    "smart": 83,
+    "devoted": 82,
+    "tough": 81,
+    "charm": 80,
+    "hair": "empty",
+    "facialHair": "empty",
+    "shirt": "empty",
+    "pants": "empty",
+    "shoes": "empty"
+  }
+  

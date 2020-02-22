@@ -6,19 +6,33 @@ using SimpleJSON;
 
 public class CharacterDataManager : MonoBehaviour
 {
-    private string file = "player1.txt";
+    //private string file = "player1.txt";
+
     public PlayerData data;
 
-    public void Save()
+    //public void Save()
+    //{
+    //    string json = JsonUtility.ToJson(data);
+    //    WriteToFile(file, json);
+    //}
+
+    public void Save(string fileName)
     {
         string json = JsonUtility.ToJson(data);
-        WriteToFile(file, json);
+        WriteToFile(fileName, json);
     }
 
-    public void Load()
+    //public void Load()
+    //{
+    //    data = new PlayerData();
+    //    string json = ReadFromFile(file);
+    //    JsonUtility.FromJsonOverwrite(json, data);
+    //}
+
+    public void Load(string fileName)
     {
         data = new PlayerData();
-        string json = ReadFromFile(file);
+        string json = ReadFromFile(fileName);
         JsonUtility.FromJsonOverwrite(json, data);
     }
 
