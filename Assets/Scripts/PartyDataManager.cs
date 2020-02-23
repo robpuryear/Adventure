@@ -59,6 +59,7 @@ public class PartyDataManager : MonoBehaviour
         if (player1.hair.Length > 0)
         {
             player1Hair.sprite = Resources.Load<Sprite>("Art/" + player1.hair);
+            player1Hair.color = player1.hairColor;
         }
         if (player1.facialHair.Length > 0)
         {
@@ -87,6 +88,7 @@ public class PartyDataManager : MonoBehaviour
         if (player2.hair.Length > 0)
         {
             player2Hair.sprite = Resources.Load<Sprite>("Art/" + player2.hair);
+            player2Hair.color = player2.hairColor;
         }
         if (player2.facialHair.Length > 0)
         {
@@ -114,6 +116,7 @@ public class PartyDataManager : MonoBehaviour
         if (player3.hair.Length > 0)
         {
             player3Hair.sprite = Resources.Load<Sprite>("Art/" + player3.hair);
+            player3Hair.color = player3.hairColor;
         }
         if (player3.facialHair.Length > 0)
         {
@@ -141,6 +144,7 @@ public class PartyDataManager : MonoBehaviour
         if (player4.hair.Length > 0)
         {
             player4Hair.sprite = Resources.Load<Sprite>("Art/" + player4.hair);
+            player4Hair.color = player4.hairColor;
         }
         if (player4.facialHair.Length > 0)
         {

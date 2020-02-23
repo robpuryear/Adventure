@@ -18,4 +18,5 @@ public class PlayerData
     public string pants;
     public string shoes;
 
+    public Color hairColor;
 }
