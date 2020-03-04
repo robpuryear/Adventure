@@ -59,10 +59,9 @@ public class CharacterDataManager : MonoBehaviour
             }
         }
         else
-        {
-            var textFile = Resources.Load<TextAsset>("emptyPlayer");
-            return textFile.ToString();
-        }
+            Debug.LogWarning("File not found!");
+
+        return "";
     }
 
     private string GetFilePath(string fileName)

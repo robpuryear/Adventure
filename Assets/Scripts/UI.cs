@@ -87,39 +87,27 @@ public class UI : MonoBehaviour
         smart.text = dataManager.data.smart.ToString();
         charm.text = dataManager.data.charm.ToString();
         strong.text = dataManager.data.strong.ToString();
-
-        hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
-        hair.color = dataManager.data.hairColor;
-
-        facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
-
-        shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
-
-        pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
-
-        shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
-
-        //if (dataManager.data.hair.Length > 0)
-        //{
-        //    hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
-        //    //hair.color = dataManager.data.hairColor;
-        //}
-        //if (dataManager.data.facialHair.Length > 0)
-        //{
-        //    facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
-        //}
-        //if (dataManager.data.shoes.Length > 0)
-        //{
-        //    shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
-        //}
-        //if (dataManager.data.pants.Length > 0)
-        //{
-        //    pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
-        //}
-        //if (dataManager.data.shirt.Length > 0)
-        //{
-        //    shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
-        //}
+         
+        if (dataManager.data.hair.Length > 0)
+        {
+            hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
+        }
+        if (dataManager.data.facialHair.Length > 0)
+        {
+            facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
+        }
+        if (dataManager.data.shoes.Length > 0)
+        {
+            shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
+        }
+        if (dataManager.data.pants.Length > 0)
+        {
+            pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
+        }
+        if (dataManager.data.shirt.Length > 0)
+        {
+            shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
+        }
     }
 
     public void AddHair()
@@ -309,7 +297,6 @@ public class UI : MonoBehaviour
     public void ClickSave()
     {
         dataManager.data.hair = hair.sprite.name;
-        dataManager.data.hairColor = hair.color;
         dataManager.data.facialHair = facialHair.sprite.name;
         dataManager.data.shirt = shirt.sprite.name;
         dataManager.data.shoes = shoes.sprite.name;
@@ -323,15 +310,5 @@ public class UI : MonoBehaviour
     {
         return PlayerPrefs.GetString("player");
     }
-
-    public void SetHairColor()
-    {
-        Color btnColor = EventSystem.current.currentSelectedGameObject.GetComponent<Image>().color;
-        hair.color = btnColor;
-
-        //hair.color = Color.yellow;
-        //hair.color = new Color(1f, 0.92f, 0.016f, 1f);
-    }
-
 
 }

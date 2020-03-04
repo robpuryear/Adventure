@@ -10,7 +10,6 @@
     "facialHair": "empty",
     "shirt": "empty",
     "pants": "empty",
-    "shoes": "empty",
-"hairColor":{"r":0.7169811725616455,"g":0.46508491039276125,"b":0.13189749419689179,"a":1.0}
+    "shoes": "empty"
   }
   

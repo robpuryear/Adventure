@@ -28,34 +28,3 @@ It has the following structure for example:
 The player attributes from "name" to "charm" can all be set on the Character Edit screen or manually edited in this JSON file.
 
 The attributes from "hair" to "shoes" have a value of the image name. There has to be a corresponding image located in the Unity directory `Resources/Art`
-
-
-# Story JSON
-
-In the `Resources/States` directory, we control the states with the following example JSON file:
-
-```
-{
-    "storyText": "The Adventure Begins - The clues have led you directly to a cave in the foothills of the Greypeak Mountains. Outside the opening are a variety of tracks and prints.",
-    "storyImage": "Art/cave 1",
-    "btn1Text": "Investigate",
-    "btn2Text": "",
-    "btn3Text": "Ignore",
-    "states": [
-        {
-            "btn1": "investigateCave",
-            "btn2": "",
-            "btn3": "Ignore"
-        }
-    ]
-}
-```
-
-`storyText`   - the text that will be displayed at the top of the panel
-`storyImage`  - the image to be loaded. It must be `Art/"imageName"`
-`btn1Text`    - the text on the button on the left
-`btn2Text`    - the text on the button in the middle
-`btn3Text`    - the text on the button on the right
-`states`      - an array that holds the states that each button when pressed when go into. The value is the name of the json file of the state you want to go into. For example, using the above example, if button 1 is pressed, the json file named `investigateCave` will load. That filename will need to be in the `Resources/States` directory.
-
-If `btn1Text`, `btn2Text`, or `btn3Text` are an empty string, the button will be hidden
