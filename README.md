@@ -28,3 +28,18 @@ It has the following structure for example:
 The player attributes from "name" to "charm" can all be set on the Character Edit screen or manually edited in this JSON file.
 
 The attributes from "hair" to "shoes" have a value of the image name. There has to be a corresponding image located in the Unity directory `Resources/Art`
+
+
+# Random Map Generator
+
+Open the scene in RandomMapGen > Scenes > RandomMapScene
+
+Select the RandomMapTester object and press Run
+
+In the inspector, you can change the size of the map in the Map Dimensions section
+
+In the Decorate Map section, you can change the percentages of different tiles in the map
+
+Press the Generate Island button (while game is running). You can press the button as many times as you would like while the game is running to generate new maps.
+
+In the game tab, hold right click button to explore the map
