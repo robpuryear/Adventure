@@ -5411,7 +5411,8 @@ MonoBehaviour:
   nextShoes:
   - {fileID: 21300000, guid: 9786511475ee945a78b8ebced666b4a1, type: 3}
   - {fileID: 21300000, guid: 44bb801e63b384e45b688702ff65054d, type: 3}
-  hairName: 
+  playerBtn: 
+  jsonFile: 
 --- !u!4 &1833926222
 Transform:
   m_ObjectHideFlags: 0
