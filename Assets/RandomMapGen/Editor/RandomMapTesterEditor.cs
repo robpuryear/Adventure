@@ -23,5 +23,24 @@ public class RandomMapTesterEditor : Editor
                 script.MakeMap();
             }
         }
+
+        // create a button to run the function to create a player
+        if (GUILayout.Button("Create Player"))
+        {
+            // make sure the game is running before we try to make a map
+            if (Application.isPlaying)
+            {
+                script.CreatePlayer();
+            }
+        }
+
+        if(GUILayout.Button("Reset"))
+        {
+            // make sure the game is running before we try to make a map
+            if (Application.isPlaying)
+            {
+                script.Reset();
+            }
+        }
     }
 }

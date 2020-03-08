@@ -23,8 +23,16 @@ public class RandomMapTester : MonoBehaviour
     [Header("Map Sprites")]
 
     public Texture2D islandTexture;
+    public Texture2D fowTexture;
 
     [Space]
+    [Header("Player")]
+    public GameObject playerPrefab;
+    public GameObject player;
+    public int distance = 3;    // needs to be an odd number
+
+    [Space]
+
     [Header("Decorate Map")]
     [Range(0, .9f)]
     public float erodePercent = .5f;
@@ -45,10 +53,33 @@ public class RandomMapTester : MonoBehaviour
 
     public Map map;
 
+    private int tmpX;
+    private int tmpY;
+    private Sprite[] islandTilesSprites;
+    private Sprite[] fowTilesSprites;
+
+
     // Start is called before the first frame update
     void Start()
     {
+        islandTilesSprites = Resources.LoadAll<Sprite>(islandTexture.name);
+        fowTilesSprites = Resources.LoadAll<Sprite>(fowTexture.name);
+
+        Reset();
+    }
+
+    public void Reset()
+    {
         map = new Map();
+        MakeMap();
+        // delay adding the player until the map is created
+        StartCoroutine(AddPlayer());
+    }
+
+    IEnumerator AddPlayer()
+    {
+        yield return new WaitForEndOfFrame();
+        CreatePlayer();
     }
 
     public void MakeMap()
@@ -75,7 +106,6 @@ public class RandomMapTester : MonoBehaviour
     {
         ClearMapContainer();
         // read the sprites out from the island texture
-        Sprite[] sprites = Resources.LoadAll<Sprite>(islandTexture.name);
 
         var total = map.tiles.Length;
         var maxColumns = map.columns;
@@ -94,22 +124,75 @@ public class RandomMapTester : MonoBehaviour
             go.transform.SetParent(mapContainer.transform);
             go.transform.position = new Vector3(newX, newY, 0);
 
-            var tile = map.tiles[i];
-
-            var spriteID = tile.autotileID;
-
-            if(spriteID >= 0)
-            {
-                var sr = go.GetComponent<SpriteRenderer>();
-                sr.sprite = sprites[spriteID];
-            }
-            
+            DecorateTile(i);
 
             if(column == (maxColumns - 1))
             {
                 row++;
             }
         }
+    }
+
+    private void DecorateTile(int tileId)
+    {
+        var tile = map.tiles[tileId];
+
+        var spriteID = tile.autotileID;
+
+        var go = mapContainer.transform.GetChild(tileId).gameObject;
+
+        if (spriteID >= 0)
+        {
+            var sr = go.GetComponent<SpriteRenderer>();
+            if (tile.visited)
+            {
+                sr.sprite = islandTilesSprites[spriteID];
+            }
+            else
+            {
+                tile.CalculateFOWAutotileID();
+                sr.sprite = fowTilesSprites[Mathf.Min(tile.fowAutotileID, fowTilesSprites.Length - 1)];
+
+            }
+        }
+    }
+
+    public void CreatePlayer()
+    {
+        // Instantiate player
+        player = Instantiate(playerPrefab);
+        // Name player
+        player.name = "Player";
+        // Set player parent
+        player.transform.SetParent(mapContainer.transform);
+
+        var controller = player.GetComponent<MapMovementController>();
+        controller.map = map;
+        controller.tileSize = tileSize;
+        controller.tileActionCallback += TileActionCallback;
+
+        var moveScript = Camera.main.GetComponent<MoveCamera>();
+        moveScript.target = player;
+
+        controller.MoveTo(map.castleTile.id);
+
+        //// get position of the castle tile
+        //PosUtil.CalculatePos(map.castleTile.id, map.columns, out tmpX, out tmpY);
+
+        //tmpX *= (int)tileSize.x;
+        //tmpY *= -(int)tileSize.y;
+
+        //// set player position on the map on top of the castle tile
+        //player.transform.position = new Vector3(tmpX,tmpY, 0);
+    }
+
+    void TileActionCallback(int type)
+    {
+        // can tell the type of tile the player lands on
+        //Debug.Log("On tile type: " + type);
+
+        var tileID = player.GetComponent<MapMovementController>().currentTile;
+        VisitTile(tileID);
     }
 
     void ClearMapContainer()
@@ -125,9 +208,63 @@ public class RandomMapTester : MonoBehaviour
     {
         var camPos = Camera.main.transform.position;
         var width = map.columns;
-        camPos.x = (index % width) * tileSize.x;
-        camPos.y = -((index / width) * tileSize.y);
+
+        PosUtil.CalculatePos(index, width, out tmpX, out tmpY);
+
+        camPos.x = tmpX * tileSize.x;
+        camPos.y = -tmpY * tileSize.y;
         Camera.main.transform.position = camPos;
+    }
+
+    void VisitTile(int index)
+    {
+        int column, newX, newY, row = 0;
+
+        PosUtil.CalculatePos(index, map.columns, out tmpX, out tmpY);
+
+        var half = Mathf.FloorToInt(distance / 2f);
+
+        tmpX -= half;
+        tmpY -= half;
+
+        var total = distance * distance;
+        var maxColumns = distance - 1;
+
+        for(int i =0; i < total; i++)
+        {
+            column = i % distance;
+            newX = column + tmpX;
+            newY = row + tmpY;
+
+            PosUtil.CalculateIndex(newX, newY, map.columns, out index);
+
+            if(index > -1 && index < map.tiles.Length)
+            {
+                var tile = map.tiles[index];
+                tile.visited = true;
+
+                DecorateTile(index);
+
+                foreach (var neighbor in tile.neighbors)
+                {
+                    if (neighbor != null)
+                    {
+                        if (!neighbor.visited)
+                        {
+                            neighbor.CalculateFOWAutotileID();
+                            DecorateTile(neighbor.id);
+                        }
+                    }
+
+                }
+            }
+
+            if (column == maxColumns)
+            {
+                row++;
+            }
+        }
+
     }
 
 }

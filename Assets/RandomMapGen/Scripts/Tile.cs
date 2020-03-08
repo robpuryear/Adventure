@@ -17,8 +17,8 @@ public class Tile {
     public int autotileID; 
     public int id = 0;
     public Tile[] neighbors = new Tile[4];
-
-
+    public bool visited;
+    public int fowAutotileID;
 
     public void AddNeighbor(Sides side, Tile tile)
     {
@@ -72,7 +72,24 @@ public class Tile {
         }
 
         autotileID = Convert.ToInt32(sideValues.ToString(), 2);
+    }
 
+    public void CalculateFOWAutotileID()
+    {
+        var sideValues = new StringBuilder();
 
+        foreach (Tile tile in neighbors)
+        {
+            if(tile == null)
+            {
+                sideValues.Append("1");
+            }
+            else
+            {
+                sideValues.Append(tile.visited ? "0": "1");
+            }
+        }
+
+        fowAutotileID = Convert.ToInt32(sideValues.ToString(), 2);
     }
 }
