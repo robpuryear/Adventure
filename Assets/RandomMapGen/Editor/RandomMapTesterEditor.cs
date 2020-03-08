@@ -15,24 +15,24 @@ public class RandomMapTesterEditor : Editor
         var script = (RandomMapTester)target;
 
         // create a button to run the function to create a map
-        if(GUILayout.Button("Generate Island"))
-        {
-            // make sure the game is running before we try to make a map
-            if (Application.isPlaying)
-            {
-                script.MakeMap();
-            }
-        }
+        //if(GUILayout.Button("Generate Island"))
+        //{
+        //    // make sure the game is running before we try to make a map
+        //    if (Application.isPlaying)
+        //    {
+        //        script.MakeMap();
+        //    }
+        //}
 
-        // create a button to run the function to create a player
-        if (GUILayout.Button("Create Player"))
-        {
-            // make sure the game is running before we try to make a map
-            if (Application.isPlaying)
-            {
-                script.CreatePlayer();
-            }
-        }
+        //// create a button to run the function to create a player
+        //if (GUILayout.Button("Create Player"))
+        //{
+        //    // make sure the game is running before we try to make a map
+        //    if (Application.isPlaying)
+        //    {
+        //        script.CreatePlayer();
+        //    }
+        //}
 
         if(GUILayout.Button("Reset"))
         {
