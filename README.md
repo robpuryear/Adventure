@@ -28,3 +28,7 @@ It has the following structure for example:
 The player attributes from "name" to "charm" can all be set on the Character Edit screen or manually edited in this JSON file.
 
 The attributes from "hair" to "shoes" have a value of the image name. There has to be a corresponding image located in the Unity directory `Resources/Art`
+
+# Battle System
+
+To test the pokemon style battle game, open the scene from Assets > BattleSystem > Scenes > BattleSystemScene
