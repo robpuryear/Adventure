@@ -30,6 +30,14 @@ public class RandomMapTester : MonoBehaviour
     public GameObject playerPrefab;
     public GameObject player;
     public int distance = 3;    // needs to be an odd number
+    [Range(0, .9f)]
+    public float randomBattleOdds = .3f;
+
+
+    [Space]
+    [Header("Actor Templates")]
+    public Actor playerTemplate;
+    public Actor monsterTemplate;
 
     [Space]
 
@@ -57,23 +65,32 @@ public class RandomMapTester : MonoBehaviour
     private int tmpY;
     private Sprite[] islandTilesSprites;
     private Sprite[] fowTilesSprites;
+    private Actor playerActor;
 
+    private BattleWindow battleWindow;
+    private StatsWindow statsWindow;
 
-    // Start is called before the first frame update
-    void Start()
+    public WindowManager windowManager
     {
-        islandTilesSprites = Resources.LoadAll<Sprite>(islandTexture.name);
-        fowTilesSprites = Resources.LoadAll<Sprite>(fowTexture.name);
-
-        Reset();
+        get
+        {
+            return GenericWindow.manager;
+        }
     }
 
     public void Reset()
     {
+        islandTilesSprites = Resources.LoadAll<Sprite>(islandTexture.name);
+        fowTilesSprites = Resources.LoadAll<Sprite>(fowTexture.name);
         map = new Map();
         MakeMap();
         // delay adding the player until the map is created
         StartCoroutine(AddPlayer());
+    }
+
+    public void Shutdown()
+    {
+        ClearMapContainer();
     }
 
     IEnumerator AddPlayer()
@@ -176,6 +193,13 @@ public class RandomMapTester : MonoBehaviour
 
         controller.MoveTo(map.castleTile.id);
 
+        playerActor = playerTemplate.Clone<Actor>();
+        playerActor.ResetHealth();
+
+        statsWindow = windowManager.Open((int)Windows.StatsWindow - 1, false) as StatsWindow;
+        statsWindow.target = playerActor;
+        statsWindow.UpdateStats();
+
         //// get position of the castle tile
         //PosUtil.CalculatePos(map.castleTile.id, map.columns, out tmpX, out tmpY);
 
@@ -193,6 +217,41 @@ public class RandomMapTester : MonoBehaviour
 
         var tileID = player.GetComponent<MapMovementController>().currentTile;
         VisitTile(tileID);
+
+        switch (type)
+        {
+            // town tile
+            case 19:
+                DisplayMessage("You have entered a town");
+                break;
+            // castle tile
+            case 20:
+                DisplayMessage("You have entered a castle");
+                break;
+            // whenever we walk on top of a dungeon, we trigger a battle
+            case 21:
+                StartBattle();
+                break;
+            default:
+                var chance = Random.Range(0, 1f);
+                if(chance < randomBattleOdds)
+                {
+                    StartBattle();
+                }
+                break;
+        }
+
+        // opens the messagewindow
+        // always need to subtract 1 from the enum because the first one is none
+        //var messageWindow = windowManager.Open((int)Windows.MessageWindow - 1, false) as MessageWindow;
+        //messageWindow.text = "On tileType " + type;
+
+    }
+
+    private void DisplayMessage(string text)
+    {
+        var messageWindow = windowManager.Open((int)Windows.MessageWindow - 1, false) as MessageWindow;
+        messageWindow.text = text;
     }
 
     void ClearMapContainer()
@@ -218,44 +277,48 @@ public class RandomMapTester : MonoBehaviour
 
     void VisitTile(int index)
     {
+
         int column, newX, newY, row = 0;
 
         PosUtil.CalculatePos(index, map.columns, out tmpX, out tmpY);
 
         var half = Mathf.FloorToInt(distance / 2f);
-
         tmpX -= half;
         tmpY -= half;
 
         var total = distance * distance;
         var maxColumns = distance - 1;
 
-        for(int i =0; i < total; i++)
+        for (int i = 0; i < total; i++)
         {
+
             column = i % distance;
+
             newX = column + tmpX;
             newY = row + tmpY;
 
             PosUtil.CalculateIndex(newX, newY, map.columns, out index);
 
-            if(index > -1 && index < map.tiles.Length)
+            if (index > -1 && index < map.tiles.Length)
             {
                 var tile = map.tiles[index];
                 tile.visited = true;
-
                 DecorateTile(index);
 
                 foreach (var neighbor in tile.neighbors)
                 {
+
                     if (neighbor != null)
                     {
+
                         if (!neighbor.visited)
                         {
+
                             neighbor.CalculateFOWAutotileID();
                             DecorateTile(neighbor.id);
                         }
-                    }
 
+                    }
                 }
             }
 
@@ -267,4 +330,63 @@ public class RandomMapTester : MonoBehaviour
 
     }
 
+    public void StartBattle()
+    {
+        var monsterActor = monsterTemplate.Clone<Actor>();
+        monsterActor.ResetHealth();
+
+        battleWindow = windowManager.Open((int)Windows.BattleWindow - 1, false) as BattleWindow;
+        battleWindow.battleOverCallback += BattleOver;
+        battleWindow.StartBattle(playerActor, monsterActor);
+        TogglePlayerMovement(false);
+    }
+
+    public void EndBattle()
+    {
+        battleWindow.Close();
+        TogglePlayerMovement(true);
+    }
+
+    private void TogglePlayerMovement(bool value)
+    {
+        player.GetComponent<MapMovementController>().enabled = value;
+        Camera.main.GetComponent<MoveCamera>().enabled = value;
+    }
+
+    private void BattleOver(bool playerWin)
+    {
+        EndBattle();
+
+        if (!playerWin)
+        {
+            Destroy(player);
+            playerActor = null;
+            StartCoroutine(ExitGame());
+
+            //var messageWindow = windowManager.Open((int)Windows.MessageWindow - 1, false) as MessageWindow;
+            //messageWindow.text = "The game is over";
+        }
+        else
+        {
+            var tileID = player.GetComponent<MapMovementController>().currentTile;
+            var tile = map.tiles[tileID];
+
+            // if you won a battle in a dungeon
+            if(tile.autotileID == 21)
+            {   // change the tile from a dungeon to a skull
+                tile.autotileID = 22;
+                // re-draw the tile on the map
+                DecorateTile(tileID);
+            }
+        }
+    }
+
+    IEnumerator ExitGame()
+    {
+        DisplayMessage("The game is over");
+
+        yield return new WaitForSeconds(2);
+
+        windowManager.Open((int)Windows.GameOverWindow - 1);
+    }
 }
