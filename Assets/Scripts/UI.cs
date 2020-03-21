@@ -23,18 +23,21 @@ public class UI : MonoBehaviour
     public Image shirt;
     public Image pants;
     public Image shoes;
+    public Image eyes;
 
     int hairCounter = -1;
     int facialHairCounter = -1;
     int shirtCounter = -1;
     int pantsCounter = -1;
     int shoesCounter = -1;
+    int eyesCounter = -1;
 
     public Sprite[] nextHair;
     public Sprite[] nextFacialHair;
     public Sprite[] nextShirt;
     public Sprite[] nextPants;
     public Sprite[] nextShoes;
+    public Sprite[] nextEyes;
 
     public string playerBtn;
     public string jsonFile;
@@ -110,7 +113,7 @@ public class UI : MonoBehaviour
         }
     }
 
-    public void AddHair()
+    public void ScrollUpHair()
     {
         var nextHairs = getNextHair();
 
@@ -126,12 +129,28 @@ public class UI : MonoBehaviour
         }
     }
 
+    public void ScrollDownHair()
+    {
+        var nextHairs = getNextHair();
+
+        if (hairCounter > 0)
+        {
+            hairCounter -= 1;
+            hair.sprite = nextHairs[hairCounter];
+        }
+        else
+        {
+            hairCounter = nextHairs.Length - 1;
+            hair.sprite = nextHairs[hairCounter];
+        }
+    }
+
     public Sprite[] getNextHair()
     {
         return nextHair;
     }
 
-    public void AddFacialHair()
+    public void ScrollUpBeard()
     {
         var nextFacialHairs = getNextFacialHair();
 
@@ -147,12 +166,34 @@ public class UI : MonoBehaviour
         }
     }
 
+    public void ScrollDownBeard()
+    {
+        var nextFacialHairs = getNextFacialHair();
+
+        if (facialHairCounter > 0)
+        {
+            facialHairCounter -= 1;
+            facialHair.sprite = nextFacialHairs[facialHairCounter];
+        }
+        else
+        {
+            facialHairCounter = nextFacialHair.Length - 1;
+            facialHair.sprite = nextFacialHairs[facialHairCounter];
+        }
+    }
+
     public Sprite[] getNextFacialHair()
     {
         return nextFacialHair;
     }
 
-    public void AddShirt()
+
+    public Sprite[] getNextShirt()
+    {
+        return nextShirt;
+    }
+
+    public void ScrollUpShirt()
     {
         var nextShirt = getNextShirt();
 
@@ -168,13 +209,24 @@ public class UI : MonoBehaviour
         }
     }
 
-    public Sprite[] getNextShirt()
+    public void ScrollDownShirt()
     {
-        return nextShirt;
+        var nextShirt = getNextShirt();
+
+        if (shirtCounter > 0)
+        {
+            shirtCounter -= 1;
+            shirt.sprite = nextShirt[shirtCounter];
+        }
+        else
+        {
+            shirtCounter = nextShirt.Length - 1;
+            shirt.sprite = nextShirt[shirtCounter];
+        }
     }
 
 
-    public void AddPants()
+    public void ScrollUpPants()
     {
         var nextPants = getNextPants();
 
@@ -190,12 +242,28 @@ public class UI : MonoBehaviour
         }
     }
 
+    public void ScrollDownPants()
+    {
+        var nextPants = getNextPants();
+
+        if (pantsCounter > 0)
+        {
+            pantsCounter -= 1;
+            pants.sprite = nextPants[pantsCounter];
+        }
+        else
+        {
+            pantsCounter = nextPants.Length - 1;
+            pants.sprite = nextPants[pantsCounter];
+        }
+    }
+
     public Sprite[] getNextPants()
     {
         return nextPants;
     }
 
-    public void AddShoes()
+    public void ScrollUpShoes()
     {
         var nextShoes = getNextShoes();
 
@@ -211,9 +279,62 @@ public class UI : MonoBehaviour
         }
     }
 
+    public void ScrollDownShoes()
+    {
+        var nextShoes = getNextShoes();
+
+        if (shoesCounter > 0)
+        {
+            shoesCounter -= 1;
+            shoes.sprite = nextShoes[shoesCounter];
+        }
+        else
+        {
+            shoesCounter = nextShoes.Length - 1;
+            shoes.sprite = nextShoes[shoesCounter];
+        }
+    }
+
     public Sprite[] getNextShoes()
     {
         return nextShoes;
+    }
+
+    public void ScrollUpEyes()
+    {
+        var nextEyes = getNextEyes();
+
+        if (eyesCounter < nextEyes.Length - 1)
+        {
+            eyesCounter += 1;
+            eyes.sprite = nextEyes[eyesCounter];
+        }
+        else
+        {
+            eyesCounter = 0;
+            eyes.sprite = nextEyes[eyesCounter];
+        }
+    }
+
+    public void ScrollDownEyes()
+    {
+        var nextEyes = getNextEyes();
+
+        if (eyesCounter > 0)
+        {
+            eyesCounter -= 1;
+            eyes.sprite = nextEyes[eyesCounter];
+        }
+        else
+        {
+            eyesCounter = nextEyes.Length - 1;
+            eyes.sprite = nextEyes[eyesCounter];
+        }
+    }
+
+    public Sprite[] getNextEyes()
+    {
+        return nextEyes;
     }
 
 

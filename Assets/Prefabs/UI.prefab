@@ -1,0 +1,79 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6616999202600959699
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6616999202600959697}
+  - component: {fileID: 6616999202600959698}
+  m_Layer: 0
+  m_Name: UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6616999202600959697
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616999202600959699}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 378.05627, y: 935.10394, z: -1.3621403}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6616999202600959698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6616999202600959699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ba9e1b606dab4e2aad0f29ee9563021, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerName: {fileID: 0}
+  strong: {fileID: 0}
+  quick: {fileID: 0}
+  smart: {fileID: 0}
+  devoted: {fileID: 0}
+  tough: {fileID: 0}
+  charm: {fileID: 0}
+  dataManager: {fileID: 0}
+  hair: {fileID: 0}
+  facialHair: {fileID: 0}
+  shirt: {fileID: 0}
+  pants: {fileID: 0}
+  shoes: {fileID: 0}
+  nextHair:
+  - {fileID: 21300000, guid: 859bf951a809443fca1f3a25d697816e, type: 3}
+  - {fileID: 21300000, guid: 880a69692b233462d86f558577b6b8b3, type: 3}
+  - {fileID: 21300000, guid: f0e4e7d74b2ef4a5c9cc349e38fa2abf, type: 3}
+  - {fileID: 21300000, guid: 44bb801e63b384e45b688702ff65054d, type: 3}
+  nextFacialHair:
+  - {fileID: 21300000, guid: 334f8af5d14794ef992404b1b7d00c78, type: 3}
+  - {fileID: 21300000, guid: 2561886f4c0e544ac90fbd52a2fa410d, type: 3}
+  - {fileID: 21300000, guid: 6c0f160cd3db74b76932c88e4bacc5eb, type: 3}
+  - {fileID: 21300000, guid: 44bb801e63b384e45b688702ff65054d, type: 3}
+  nextShirt:
+  - {fileID: 21300000, guid: f133c587d8a4a454c99c3cc58bd5b34b, type: 3}
+  - {fileID: 21300000, guid: 44bb801e63b384e45b688702ff65054d, type: 3}
+  nextPants:
+  - {fileID: 21300000, guid: 7df501aa27dfd4552926bc5230f35cbf, type: 3}
+  - {fileID: 21300000, guid: 44bb801e63b384e45b688702ff65054d, type: 3}
+  nextShoes:
+  - {fileID: 21300000, guid: 9786511475ee945a78b8ebced666b4a1, type: 3}
+  - {fileID: 21300000, guid: 44bb801e63b384e45b688702ff65054d, type: 3}
+  playerBtn: 
+  jsonFile: 
