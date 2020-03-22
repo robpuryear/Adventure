@@ -17,5 +17,6 @@ public class PlayerData
     public string shirt;
     public string pants;
     public string shoes;
+    public string eyes;
 
 }

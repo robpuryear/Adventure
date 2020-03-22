@@ -1,5 +1,5 @@
 {
-    "name": "Player",
+    "name": "Enter Name",
     "strong": 85,
     "quick": 84,
     "smart": 83,
@@ -10,6 +10,7 @@
     "facialHair": "empty",
     "shirt": "empty",
     "pants": "empty",
-    "shoes": "empty"
+    "shoes": "empty",
+    "eyes": "empty"
   }
   

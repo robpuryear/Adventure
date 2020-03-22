@@ -9,12 +9,12 @@ public class UI : MonoBehaviour
 {
 
     public InputField playerName;
-    public Text strong;
-    public Text quick;
-    public Text smart;
-    public Text devoted;
-    public Text tough;
-    public Text charm;
+    //public Text strong;
+    //public Text quick;
+    //public Text smart;
+    //public Text devoted;
+    //public Text tough;
+    //public Text charm;
 
     public CharacterDataManager dataManager;
 
@@ -44,9 +44,17 @@ public class UI : MonoBehaviour
 
     void Start()
     {
-        playerBtn = ThisBtnPressed();
-       
-        GetCharacter();
+        // gets the name of the button that was pressed
+        // on the party UI scene which determines
+        // which player to edit
+        //playerBtn = ThisBtnPressed();
+
+        //GetCharacter();
+
+        jsonFile = "player1.txt";
+        dataManager.Load(jsonFile);
+
+        LoadSavedCharacter();
     }
 
     public void GetCharacter()
@@ -84,33 +92,40 @@ public class UI : MonoBehaviour
     public void LoadSavedCharacter()
     {
         playerName.text = dataManager.data.name;
-        quick.text = dataManager.data.quick.ToString();
-        tough.text = dataManager.data.tough.ToString();
-        devoted.text = dataManager.data.devoted.ToString();
-        smart.text = dataManager.data.smart.ToString();
-        charm.text = dataManager.data.charm.ToString();
-        strong.text = dataManager.data.strong.ToString();
-         
-        if (dataManager.data.hair.Length > 0)
-        {
-            hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
-        }
-        if (dataManager.data.facialHair.Length > 0)
-        {
-            facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
-        }
-        if (dataManager.data.shoes.Length > 0)
-        {
-            shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
-        }
-        if (dataManager.data.pants.Length > 0)
-        {
-            pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
-        }
-        if (dataManager.data.shirt.Length > 0)
-        {
-            shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
-        }
+        hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
+        facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
+        shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
+        pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
+        shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
+        eyes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.eyes);
+
+        //quick.text = dataManager.data.quick.ToString();
+        //tough.text = dataManager.data.tough.ToString();
+        //devoted.text = dataManager.data.devoted.ToString();
+        //smart.text = dataManager.data.smart.ToString();
+        //charm.text = dataManager.data.charm.ToString();
+        //strong.text = dataManager.data.strong.ToString();
+
+        //if (dataManager.data.hair.Length > 0)
+        //{
+        //    hair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.hair);
+        //}
+        //if (dataManager.data.facialHair.Length > 0)
+        //{
+        //    facialHair.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.facialHair);
+        //}
+        //if (dataManager.data.shoes.Length > 0)
+        //{
+        //    shoes.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shoes);
+        //}
+        //if (dataManager.data.pants.Length > 0)
+        //{
+        //    pants.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.pants);
+        //}
+        //if (dataManager.data.shirt.Length > 0)
+        //{
+        //    shirt.sprite = Resources.Load<Sprite>("Art/" + dataManager.data.shirt);
+        //}
     }
 
     public void ScrollUpHair()
@@ -338,77 +353,77 @@ public class UI : MonoBehaviour
     }
 
 
-    public void IncreaseStrong()
-    {
-        dataManager.data.strong += 1;
-        strong.text = dataManager.data.strong.ToString();
-    }
+    //public void IncreaseStrong()
+    //{
+    //    dataManager.data.strong += 1;
+    //    strong.text = dataManager.data.strong.ToString();
+    //}
 
-    public void DecreaseStrong()
-    {
-        dataManager.data.strong -= 1;
-        strong.text = dataManager.data.strong.ToString();
-    }
+    //public void DecreaseStrong()
+    //{
+    //    dataManager.data.strong -= 1;
+    //    strong.text = dataManager.data.strong.ToString();
+    //}
 
-    public void IncreaseQuick()
-    {
-        dataManager.data.quick += 1;
-        quick.text = dataManager.data.quick.ToString();
-    }
+    //public void IncreaseQuick()
+    //{
+    //    dataManager.data.quick += 1;
+    //    quick.text = dataManager.data.quick.ToString();
+    //}
 
-    public void DecreaseQuick()
-    {
-        dataManager.data.quick -= 1;
-        quick.text = dataManager.data.quick.ToString();
-    }
+    //public void DecreaseQuick()
+    //{
+    //    dataManager.data.quick -= 1;
+    //    quick.text = dataManager.data.quick.ToString();
+    //}
 
-    public void IncreaseSmart()
-    {
-        dataManager.data.smart += 1;
-        smart.text = dataManager.data.smart.ToString();
-    }
+    //public void IncreaseSmart()
+    //{
+    //    dataManager.data.smart += 1;
+    //    smart.text = dataManager.data.smart.ToString();
+    //}
 
-    public void DecreaseSmart()
-    {
-        dataManager.data.smart -= 1;
-        smart.text = dataManager.data.smart.ToString();
-    }
+    //public void DecreaseSmart()
+    //{
+    //    dataManager.data.smart -= 1;
+    //    smart.text = dataManager.data.smart.ToString();
+    //}
 
-    public void IncreaseDevoted()
-    {
-        dataManager.data.devoted += 1;
-        devoted.text = dataManager.data.devoted.ToString();
-    }
+    //public void IncreaseDevoted()
+    //{
+    //    dataManager.data.devoted += 1;
+    //    devoted.text = dataManager.data.devoted.ToString();
+    //}
 
-    public void DecreaseDevoted()
-    {
-        dataManager.data.devoted -= 1;
-        devoted.text = dataManager.data.devoted.ToString();
-    }
+    //public void DecreaseDevoted()
+    //{
+    //    dataManager.data.devoted -= 1;
+    //    devoted.text = dataManager.data.devoted.ToString();
+    //}
 
-    public void IncreaseTough()
-    {
-        dataManager.data.tough += 1;
-        tough.text = dataManager.data.tough.ToString();
-    }
+    //public void IncreaseTough()
+    //{
+    //    dataManager.data.tough += 1;
+    //    tough.text = dataManager.data.tough.ToString();
+    //}
 
-    public void DecreaseTough()
-    {
-        dataManager.data.tough -= 1;
-        tough.text = dataManager.data.tough.ToString();
-    }
+    //public void DecreaseTough()
+    //{
+    //    dataManager.data.tough -= 1;
+    //    tough.text = dataManager.data.tough.ToString();
+    //}
 
-    public void IncreaseCharm()
-    {
-        dataManager.data.charm += 1;
-        charm.text = dataManager.data.charm.ToString();
-    }
+    //public void IncreaseCharm()
+    //{
+    //    dataManager.data.charm += 1;
+    //    charm.text = dataManager.data.charm.ToString();
+    //}
 
-    public void DecreaseCharm()
-    {
-        dataManager.data.charm -= 1;
-        charm.text = dataManager.data.charm.ToString();
-    }
+    //public void DecreaseCharm()
+    //{
+    //    dataManager.data.charm -= 1;
+    //    charm.text = dataManager.data.charm.ToString();
+    //}
 
     public void ChangeName(string text)
     {
@@ -417,14 +432,16 @@ public class UI : MonoBehaviour
 
     public void ClickSave()
     {
+        dataManager.data.name = playerName.text;
         dataManager.data.hair = hair.sprite.name;
         dataManager.data.facialHair = facialHair.sprite.name;
         dataManager.data.shirt = shirt.sprite.name;
         dataManager.data.shoes = shoes.sprite.name;
         dataManager.data.pants = pants.sprite.name;
+        dataManager.data.eyes = eyes.sprite.name;
         dataManager.Save(jsonFile);
 
-        SceneManager.LoadScene("PartyScene");
+        //SceneManager.LoadScene("PartyScene");
     }
 
     public string ThisBtnPressed()

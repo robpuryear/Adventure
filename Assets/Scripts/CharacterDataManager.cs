@@ -22,13 +22,6 @@ public class CharacterDataManager : MonoBehaviour
         WriteToFile(fileName, json);
     }
 
-    //public void Load()
-    //{
-    //    data = new PlayerData();
-    //    string json = ReadFromFile(file);
-    //    JsonUtility.FromJsonOverwrite(json, data);
-    //}
-
     public void Load(string fileName)
     {
         data = new PlayerData();
@@ -59,9 +52,11 @@ public class CharacterDataManager : MonoBehaviour
             }
         }
         else
-            Debug.LogWarning("File not found!");
+        {
+            var textFile = Resources.Load<TextAsset>("emptyPlayer");
+            return textFile.ToString();
+        }
 
-        return "";
     }
 
     private string GetFilePath(string fileName)
