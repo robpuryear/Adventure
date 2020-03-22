@@ -1,5 +1,5 @@
 {
-    "name": "Enter Name",
+    "name": "Player",
     "strong": 85,
     "quick": 84,
     "smart": 83,

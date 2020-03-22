@@ -18,7 +18,7 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadEditCharacterScene()
     {
-        SceneManager.LoadScene("EditCharacter");
+        SceneManager.LoadScene("PlayerCreator");
     }
 
     public void LoadPartyScene()

@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class UI : MonoBehaviour
+public class CharacterCreator : MonoBehaviour
 {
 
     public InputField playerName;
@@ -47,14 +47,14 @@ public class UI : MonoBehaviour
         // gets the name of the button that was pressed
         // on the party UI scene which determines
         // which player to edit
-        //playerBtn = ThisBtnPressed();
+        playerBtn = ThisBtnPressed();
 
-        //GetCharacter();
+        GetCharacter();
 
-        jsonFile = "player1.txt";
-        dataManager.Load(jsonFile);
+        //jsonFile = "player1.txt";
+        //dataManager.Load(jsonFile);
 
-        LoadSavedCharacter();
+        //LoadSavedCharacter();
     }
 
     public void GetCharacter()
@@ -441,7 +441,7 @@ public class UI : MonoBehaviour
         dataManager.data.eyes = eyes.sprite.name;
         dataManager.Save(jsonFile);
 
-        //SceneManager.LoadScene("PartyScene");
+        SceneManager.LoadScene("PartyScene");
     }
 
     public string ThisBtnPressed()

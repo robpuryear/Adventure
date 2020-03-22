@@ -17,13 +17,19 @@ public class PartyDataManager : MonoBehaviour
     public Image player1Shirt;
     public Image player1Pants;
     public Image player1Shoes;
+    public Image player1Eyes;
 
+    public Text player1Name;
+    public Text player2Name;
+    public Text player3Name;
+    public Text player4Name;
 
     public Image player2Hair;
     public Image player2FacialHair;
     public Image player2Shirt;
     public Image player2Pants;
     public Image player2Shoes;
+    public Image player2Eyes;
 
 
     public Image player3Hair;
@@ -31,6 +37,7 @@ public class PartyDataManager : MonoBehaviour
     public Image player3Shirt;
     public Image player3Pants;
     public Image player3Shoes;
+    public Image player3Eyes;
 
 
     public Image player4Hair;
@@ -38,6 +45,8 @@ public class PartyDataManager : MonoBehaviour
     public Image player4Shirt;
     public Image player4Pants;
     public Image player4Shoes;
+    public Image player4Eyes;
+
 
     public string playerBtn;
 
@@ -56,26 +65,14 @@ public class PartyDataManager : MonoBehaviour
         string json = ReadFromFile("player1.txt");
         JsonUtility.FromJsonOverwrite(json, player1);
 
-        if (player1.hair.Length > 0)
-        {
-            player1Hair.sprite = Resources.Load<Sprite>("Art/" + player1.hair);
-        }
-        if (player1.facialHair.Length > 0)
-        {
-            player1FacialHair.sprite = Resources.Load<Sprite>("Art/" + player1.facialHair);
-        }
-        if (player1.shoes.Length > 0)
-        {
-            player1Shoes.sprite = Resources.Load<Sprite>("Art/" + player1.shoes);
-        }
-        if (player1.pants.Length > 0)
-        {
-            player1Pants.sprite = Resources.Load<Sprite>("Art/" + player1.pants);
-        }
-        if (player1.shirt.Length > 0)
-        {
-            player1Shirt.sprite = Resources.Load<Sprite>("Art/" + player1.shirt);
-        }
+        player1Name.text = player1.name;
+        player1Hair.sprite = Resources.Load<Sprite>("Art/" + player1.hair);
+        player1FacialHair.sprite = Resources.Load<Sprite>("Art/" + player1.facialHair);
+        player1Shoes.sprite = Resources.Load<Sprite>("Art/" + player1.shoes);
+        player1Pants.sprite = Resources.Load<Sprite>("Art/" + player1.pants);
+        player1Shirt.sprite = Resources.Load<Sprite>("Art/" + player1.shirt);
+        player1Eyes.sprite = Resources.Load<Sprite>("Art/" + player1.eyes);
+
     }
 
     public void LoadPlayer2()
@@ -84,26 +81,13 @@ public class PartyDataManager : MonoBehaviour
         string json = ReadFromFile("player2.txt");
         JsonUtility.FromJsonOverwrite(json, player2);
 
-        if (player2.hair.Length > 0)
-        {
-            player2Hair.sprite = Resources.Load<Sprite>("Art/" + player2.hair);
-        }
-        if (player2.facialHair.Length > 0)
-        {
-            player2FacialHair.sprite = Resources.Load<Sprite>("Art/" + player2.facialHair);
-        }
-        if (player2.shoes.Length > 0)
-        {
-            player2Shoes.sprite = Resources.Load<Sprite>("Art/" + player2.shoes);
-        }
-        if (player2.pants.Length > 0)
-        {
-            player2Pants.sprite = Resources.Load<Sprite>("Art/" + player2.pants);
-        }
-        if (player2.shirt.Length > 0)
-        {
-            player2Shirt.sprite = Resources.Load<Sprite>("Art/" + player2.shirt);
-        }
+        player2Name.text = player2.name;
+        player2Hair.sprite = Resources.Load<Sprite>("Art/" + player2.hair);
+        player2FacialHair.sprite = Resources.Load<Sprite>("Art/" + player2.facialHair);
+        player2Shoes.sprite = Resources.Load<Sprite>("Art/" + player2.shoes);
+        player2Pants.sprite = Resources.Load<Sprite>("Art/" + player2.pants);
+        player2Shirt.sprite = Resources.Load<Sprite>("Art/" + player2.shirt);
+        player2Eyes.sprite = Resources.Load<Sprite>("Art/" + player2.eyes);
     }
     public void LoadPlayer3()
     {
@@ -111,26 +95,13 @@ public class PartyDataManager : MonoBehaviour
         string json = ReadFromFile("player3.txt");
         JsonUtility.FromJsonOverwrite(json, player3);
 
-        if (player3.hair.Length > 0)
-        {
-            player3Hair.sprite = Resources.Load<Sprite>("Art/" + player3.hair);
-        }
-        if (player3.facialHair.Length > 0)
-        {
-            player3FacialHair.sprite = Resources.Load<Sprite>("Art/" + player3.facialHair);
-        }
-        if (player3.shoes.Length > 0)
-        {
-            player3Shoes.sprite = Resources.Load<Sprite>("Art/" + player3.shoes);
-        }
-        if (player3.pants.Length > 0)
-        {
-            player3Pants.sprite = Resources.Load<Sprite>("Art/" + player3.pants);
-        }
-        if (player3.shirt.Length > 0)
-        {
-            player3Shirt.sprite = Resources.Load<Sprite>("Art/" + player3.shirt);
-        }
+        player3Name.text = player3.name;
+        player3Hair.sprite = Resources.Load<Sprite>("Art/" + player3.hair);
+        player3FacialHair.sprite = Resources.Load<Sprite>("Art/" + player3.facialHair);
+        player3Shoes.sprite = Resources.Load<Sprite>("Art/" + player3.shoes);
+        player3Pants.sprite = Resources.Load<Sprite>("Art/" + player3.pants);
+        player3Shirt.sprite = Resources.Load<Sprite>("Art/" + player3.shirt);
+        player3Eyes.sprite = Resources.Load<Sprite>("Art/" + player3.eyes);
     }
     public void LoadPlayer4()
     {
@@ -138,26 +109,13 @@ public class PartyDataManager : MonoBehaviour
         string json = ReadFromFile("player4.txt");
         JsonUtility.FromJsonOverwrite(json, player4);
 
-        if (player4.hair.Length > 0)
-        {
-            player4Hair.sprite = Resources.Load<Sprite>("Art/" + player4.hair);
-        }
-        if (player4.facialHair.Length > 0)
-        {
-            player4FacialHair.sprite = Resources.Load<Sprite>("Art/" + player4.facialHair);
-        }
-        if (player4.shoes.Length > 0)
-        {
-            player4Shoes.sprite = Resources.Load<Sprite>("Art/" + player4.shoes);
-        }
-        if (player4.pants.Length > 0)
-        {
-            player4Pants.sprite = Resources.Load<Sprite>("Art/" + player4.pants);
-        }
-        if (player4.shirt.Length > 0)
-        {
-            player4Shirt.sprite = Resources.Load<Sprite>("Art/" + player4.shirt);
-        }
+        player4Name.text = player4.name;
+        player4Hair.sprite = Resources.Load<Sprite>("Art/" + player4.hair);
+        player4FacialHair.sprite = Resources.Load<Sprite>("Art/" + player4.facialHair);
+        player4Shoes.sprite = Resources.Load<Sprite>("Art/" + player4.shoes);
+        player4Pants.sprite = Resources.Load<Sprite>("Art/" + player4.pants);
+        player4Shirt.sprite = Resources.Load<Sprite>("Art/" + player4.shirt);
+        player4Eyes.sprite = Resources.Load<Sprite>("Art/" + player4.eyes);
     }
 
     public void WhichPlayer()
